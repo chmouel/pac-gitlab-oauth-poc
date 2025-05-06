@@ -30,15 +30,17 @@ Use **GitLab OAuth Applications** to obtain delegated, short-lived access tokens
 
 ```mermaid
 graph LR
-  A[User Browser] -->|Initiate OAuth| B[PAC OAuth Init]
-  B -->|Redirect| C[GitLab Auth Page]
-  C -->|Authorize| C
-  C -->|Callback w/ Code| D[PAC Callback]
-  D -->|Token Exchange| C
-  D -->|Store Tokens| E[K8s Secret]
-  F[GitLab Repo Events] -->|Webhook| G[PAC Webhook Receiver]
-  G -->|Use Token| C
-  G -->|Trigger| H[Tekton Pipeline]
+    A[User Browser] -->|Navigates to| B(PAC OAuth Init URL);
+    B -->|Redirects to| C{GitLab Authorization Page};
+    C -->|User Authorizes| C;
+    C -->|Redirects with Code| D(PAC Controller oauth Callback URL);
+    D -->|Server-to-Server POST| C;
+    C -->|Returns Tokens| D;
+    D -->|Securely Stores Tokens| E[Kubernetes Secret];
+    F[GitLab Repository Events] -->|Sends Webhook to| G(PAC Controller);
+    G -->|Uses Token from Secret| C;
+    C -->|GitLab API Interaction| G;
+    G -->|Triggers| H[Tekton Pipeline];
 ```
 
 ## Usage
