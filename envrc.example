@@ -1,0 +1,8 @@
+# shellcheck shell=bash
+PATH_add .venv/bin
+export FLASK_SECRET_KEY=
+export GITLAB_CLIENT_ID=
+export GITLAB_CLIENT_SECRET=
+export GITLAB_REDIRECT_URI="http://localhost:8080/callback/gitlab"
+export GITLAB_URL="https://gitlab.com"
+export GITLAB_REFRESH_TOKEN=
