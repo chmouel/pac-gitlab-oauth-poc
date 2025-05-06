@@ -4,6 +4,8 @@ Proof of concept for GitLab OAuth integration in Pipelines as Code (PAC).
 
 ## Design Proposal: GitLab Token-less Integration for Pipelines as Code
 
+POC for design as located here: <https://hackmd.io/@chmouel/Syh3NRwexe>
+
 ### 1. Problem Statement
 
 Currently, integrating Pipelines as Code (PAC) with GitLab requires users to create and manage Personal or Project Access Tokens (PATs). This presents several inconveniences:
